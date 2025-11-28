@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <li class="nav-item"><a class="nav-link" href="libros.php">Libros</a></li>
         <li class="nav-item"><a class="nav-link" href="autores.php">Autores</a></li>
         <li class="nav-item"><a class="nav-link active" href="contacto.php">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
       </ul>
     </div>
   </div>
