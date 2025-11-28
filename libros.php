@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once __DIR__ . "/config/db.php";
 
-// Traer todos los libros con el nombre del publicador
 $sql = "SELECT t.id_titulo, t.titulo, t.tipo, t.precio, p.nombre_pub
         FROM titulos t
         JOIN publicadores p ON t.id_pub = p.id_pub";
@@ -14,11 +14,9 @@ $libros = $stmt->fetchAll();
   <meta charset="utf-8">
   <title>Librería Online - Libros</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/estilos.css">
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <script src="assets/js/main.js"></script>
-
+  <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,6 +30,7 @@ $libros = $stmt->fetchAll();
         <li class="nav-item"><a class="nav-link active" href="libros.php">Libros</a></li>
         <li class="nav-item"><a class="nav-link" href="autores.php">Autores</a></li>
         <li class="nav-item"><a class="nav-link" href="contacto.php">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
       </ul>
     </div>
   </div>
@@ -49,6 +48,7 @@ $libros = $stmt->fetchAll();
           <th>Tipo</th>
           <th>Precio</th>
           <th>Editorial</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -59,6 +59,19 @@ $libros = $stmt->fetchAll();
             <td><?= htmlspecialchars($libro['tipo']) ?></td>
             <td><?= $libro['precio'] !== null ? number_format($libro['precio'], 2) : 'N/D' ?></td>
             <td><?= htmlspecialchars($libro['nombre_pub']) ?></td>
+            <td>
+              <?php if ($libro['precio'] !== null): ?>
+                <form method="post" action="carrito.php" class="d-inline">
+                  <input type="hidden" name="accion" value="agregar">
+                  <input type="hidden" name="id_titulo" value="<?= htmlspecialchars($libro['id_titulo']) ?>">
+                  <button type="submit" class="btn btn-sm btn-primary">
+                    Agregar al carrito
+                  </button>
+                </form>
+              <?php else: ?>
+                <span class="text-muted">No disponible</span>
+              <?php endif; ?>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -69,5 +82,6 @@ $libros = $stmt->fetchAll();
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,11 +1,398 @@
-body {
-  background-color: #f5f5f5;
+/* Variables de colores */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --success-color: #27ae60;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg-light: #ecf0f1;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  color: #1e4b7a;
+/* Reset y estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* Contenedor principal con efecto de tarjeta */
+.container {
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 10px 40px var(--shadow);
+  padding: 30px;
+  margin-top: 30px !important;
+  margin-bottom: 30px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar mejorada */
+.navbar {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 1rem 0;
 }
 
 .navbar-brand {
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--white) !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  color: #ffd700 !important;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  margin: 0 10px;
+  padding: 8px 16px !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white) !important;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background-color: var(--secondary-color);
+  color: var(--white) !important;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+/* Títulos mejorados */
+h1 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 4px solid var(--secondary-color);
+  position: relative;
+  font-size: 2.5rem;
+}
+
+h1::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: var(--accent-color);
+}
+
+/* Tablas mejoradas */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px var(--shadow);
+  background: var(--white);
+}
+
+.table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.table thead th {
+  color: var(--white);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 15px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9ff;
+  transform: scale(1.01);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.table tbody td {
+  padding: 15px;
+  vertical-align: middle;
+  color: var(--text-dark);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(102, 126, 234, 0.03);
+}
+
+/* Formularios mejorados */
+.form-label {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Botones mejorados */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 12px 35px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Alertas mejoradas */
+.alert {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-weight: 500;
+  box-shadow: 0 3px 10px var(--shadow);
+  animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+  color: var(--white);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  color: var(--white);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: var(--white);
+}
+
+.alert ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+/* Página de inicio */
+.welcome-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.welcome-section h1 {
+  border-bottom: none;
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.welcome-section h1::before {
+  display: none;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Iconos de decoración */
+.page-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 50px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin-top: 20px !important;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-section h1 {
+    font-size: 2rem;
+  }
+
+  .table {
+    font-size: 0.85rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 10px 8px;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.btn-primary:hover {
+  animation: pulse 1s infinite;
+}
+
+/* Efectos de carga */
+.table tbody tr {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Flechas del carrusel ===== */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 8%;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  height: 60px;
+  pointer-events: none;   /* el contenedor NO captura clics */
+}
+
+/* Solo el icono es clickeable */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  pointer-events: auto;
+}
+
+/* Mover un poquito las flechas hacia los bordes */
+.carousel-control-prev {
+  left: 0.3rem;
+}
+
+.carousel-control-next {
+  right: 0.3rem;
+}
+
+/* En pantallas pequeñas, un pelín más grandes pero mismo comportamiento */
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 12%;
+    height: 60px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
 }
